@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', 'Tajawal', ui-sans-serif, system-ui, sans-serif;
+  --font-ar: 'Tajawal', 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  --color-ql-bg: #05070a;
+  --color-ql-bg-soft: #080c12;
+  --color-ql-panel: #0c1119;
+  --color-ql-panel-2: #10161f;
+  --color-ql-border: #1b2430;
+  --color-ql-green: #22ff8c;
+  --color-ql-green-soft: #16c96e;
+  --color-ql-green-dim: #0d7a43;
+  --color-ql-blue: #3b82f6;
+  --color-ql-purple: #a855f7;
+  --color-ql-red: #ef4444;
+  --color-ql-orange: #f59e0b;
+  --color-ql-text: #e7ecf2;
+  --color-ql-text-dim: #8b97a8;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(1200px 600px at 10% -10%, rgba(34, 255, 140, 0.07), transparent 60%),
+    radial-gradient(900px 500px at 100% 0%, rgba(59, 130, 246, 0.08), transparent 55%),
+    var(--color-ql-bg);
+  color: var(--color-ql-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+html[dir="rtl"] body {
+  font-family: var(--font-ar);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #1f2a38;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2a3847;
+}
+
+.glass {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01));
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.glow-green {
+  box-shadow: 0 0 0 1px rgba(34, 255, 140, 0.15), 0 8px 30px -10px rgba(34, 255, 140, 0.25);
+}
+
+.text-glow {
+  text-shadow: 0 0 20px rgba(34, 255, 140, 0.45);
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up {
+  animation: fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(34, 255, 140, 0.5); }
+  50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(34, 255, 140, 0); }
+}
+.animate-pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.animate-shimmer {
+  background-size: 200% 100%;
+  animation: shimmer 2.2s linear infinite;
+}
+
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+
+.num-tabular {
+  font-variant-numeric: tabular-nums;
+}
