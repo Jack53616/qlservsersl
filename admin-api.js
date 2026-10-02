@@ -26,6 +26,11 @@ var upload = multer({
   }
 });
 
+function dayStr(value) {
+  var d = value instanceof Date ? value : new Date(value);
+  return isFinite(d.getTime()) ? d.toISOString().slice(0, 10) : '';
+}
+
 module.exports = function buildAdminApi(ctx) {
   var store = ctx.store;
   var PLANS = ctx.PLANS;
@@ -170,7 +175,7 @@ module.exports = function buildAdminApi(ctx) {
       var sortedByActivation = users.filter(function (r) { return r.activated_at; })
         .sort(function (a, b) { return new Date(a.activated_at) - new Date(b.activated_at); });
       var series = buckets.map(function (day) {
-        var upToDay = sortedByActivation.filter(function (r) { return r.activated_at.slice(0, 10) <= day; });
+        var upToDay = sortedByActivation.filter(function (r) { return dayStr(r.activated_at) <= day; });
         var p = upToDay.filter(function (r) { return billingOf(r) === 'paid'; }).length;
         var f = upToDay.filter(function (r) { return billingOf(r) === 'free'; }).length;
         return { date: day, paid: p, free: f, total: p + f };
